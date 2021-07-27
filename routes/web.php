@@ -1,5 +1,8 @@
 <?php
 
+Route::get('/certificates/{qrCode}', function($qrCode) {
+    return redirect()->to(\App\Models\Certificate::with(['media'])->where('qr_code',$qrCode)->first()->certificate->getUrl());
+});
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {

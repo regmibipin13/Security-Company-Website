@@ -21,9 +21,9 @@ class SettingsController extends Controller
     {
         abort_if(Gate::denies('setting_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $settings = Setting::with(['media'])->get();
-
-        return view('admin.settings.index', compact('settings'));
+//        $settings = Setting::with(['media'])->get();
+        $setting = Setting::with(['media'])->first();
+        return view('admin.settings.edit', compact('setting'));
     }
 
     public function create()
@@ -45,7 +45,7 @@ class SettingsController extends Controller
             Media::whereIn('id', $media)->update(['model_id' => $setting->id]);
         }
 
-        return redirect()->route('admin.settings.index');
+        return redirect()->route('admin.settings.edit',$setting->id);
     }
 
     public function edit(Setting $setting)
@@ -70,7 +70,7 @@ class SettingsController extends Controller
             $setting->site_logo->delete();
         }
 
-        return redirect()->route('admin.settings.index');
+        return redirect()->route('admin.settings.edit',$setting->id);
     }
 
     public function show(Setting $setting)

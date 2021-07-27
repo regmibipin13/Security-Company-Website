@@ -9,16 +9,16 @@
     <div class="card-body">
         <form method="POST" action="{{ route("admin.certificates.store") }}" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label class="required" for="qr_code">{{ trans('cruds.certificate.fields.qr_code') }}</label>
-                <input class="form-control {{ $errors->has('qr_code') ? 'is-invalid' : '' }}" type="text" name="qr_code" id="qr_code" value="{{ old('qr_code', '') }}" required>
-                @if($errors->has('qr_code'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('qr_code') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.certificate.fields.qr_code_helper') }}</span>
-            </div>
+{{--            <div class="form-group">--}}
+{{--                <label class="required" for="qr_code">{{ trans('cruds.certificate.fields.qr_code') }}</label>--}}
+{{--                <input class="form-control {{ $errors->has('qr_code') ? 'is-invalid' : '' }}" type="text" name="qr_code" id="qr_code" value="{{ old('qr_code', '') }}" required>--}}
+{{--                @if($errors->has('qr_code'))--}}
+{{--                    <div class="invalid-feedback">--}}
+{{--                        {{ $errors->first('qr_code') }}--}}
+{{--                    </div>--}}
+{{--                @endif--}}
+{{--                <span class="help-block">{{ trans('cruds.certificate.fields.qr_code_helper') }}</span>--}}
+{{--            </div>--}}
             <div class="form-group">
                 <label class="required" for="name">{{ trans('cruds.certificate.fields.name') }}</label>
                 <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', '') }}" required>
@@ -69,20 +69,20 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.certificate.fields.trainer_helper') }}</span>
             </div>
-            <div class="form-group">
-                <label class="required" for="certificate">{{ trans('cruds.certificate.fields.certificate') }}</label>
-                <div class="needsclick dropzone {{ $errors->has('certificate') ? 'is-invalid' : '' }}" id="certificate-dropzone">
-                </div>
-                @if($errors->has('certificate'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('certificate') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.certificate.fields.certificate_helper') }}</span>
-            </div>
+{{--            <div class="form-group">--}}
+{{--                <label class="required" for="certificate">{{ trans('cruds.certificate.fields.certificate') }}</label>--}}
+{{--                <div class="needsclick dropzone {{ $errors->has('certificate') ? 'is-invalid' : '' }}" id="certificate-dropzone">--}}
+{{--                </div>--}}
+{{--                @if($errors->has('certificate'))--}}
+{{--                    <div class="invalid-feedback">--}}
+{{--                        {{ $errors->first('certificate') }}--}}
+{{--                    </div>--}}
+{{--                @endif--}}
+{{--                <span class="help-block">{{ trans('cruds.certificate.fields.certificate_helper') }}</span>--}}
+{{--            </div>--}}
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
-                    {{ trans('global.save') }}
+                    {{ trans('global.save') }} and Generate QR
                 </button>
             </div>
         </form>

@@ -21,9 +21,9 @@ class WebsiteController extends Controller
     {
         abort_if(Gate::denies('website_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $websites = Website::with(['media'])->get();
-
-        return view('admin.websites.index', compact('websites'));
+//        $websites = Website::with(['media'])->get();
+        $website = Website::with(['media'])->first();
+        return view('admin.websites.edit', compact('website'));
     }
 
     public function create()
@@ -49,7 +49,7 @@ class WebsiteController extends Controller
             Media::whereIn('id', $media)->update(['model_id' => $website->id]);
         }
 
-        return redirect()->route('admin.websites.index');
+        return redirect()->route('admin.websites.edit',$website->id);
     }
 
     public function edit(Website $website)
@@ -85,7 +85,7 @@ class WebsiteController extends Controller
             $website->about_image->delete();
         }
 
-        return redirect()->route('admin.websites.index');
+        return redirect()->route('admin.websites.edit',$website->id);
     }
 
     public function show(Website $website)

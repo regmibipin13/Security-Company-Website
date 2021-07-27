@@ -88,6 +88,10 @@ class CertificatesController extends Controller
     {
         $certificate = Certificate::create($request->all());
 
+        $certificate->update([
+            'qr_code' => 'QR-'.$certificate->id,
+        ]);
+
         if ($request->input('certificate', false)) {
             $certificate->addMedia(storage_path('tmp/uploads/' . basename($request->input('certificate'))))->toMediaCollection('certificate');
         }
@@ -96,7 +100,7 @@ class CertificatesController extends Controller
             Media::whereIn('id', $media)->update(['model_id' => $certificate->id]);
         }
 
-        return redirect()->route('admin.certificates.index');
+        return redirect()->route('admin.certificates.show',$certificate->id);
     }
 
     public function edit(Certificate $certificate)
@@ -121,7 +125,7 @@ class CertificatesController extends Controller
             $certificate->certificate->delete();
         }
 
-        return redirect()->route('admin.certificates.index');
+        return redirect()->route('admin.certificates.show',$certificate->id);
     }
 
     public function show(Certificate $certificate)

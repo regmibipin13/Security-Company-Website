@@ -19,7 +19,7 @@ class StoreCertificateRequest extends FormRequest
         return [
             'qr_code' => [
                 'string',
-                'required',
+                'nullable',
                 'unique:certificates',
             ],
             'name' => [
@@ -39,7 +39,7 @@ class StoreCertificateRequest extends FormRequest
                 'nullable',
             ],
             'certificate' => [
-                'required',
+                'nullable',
             ],
         ];
     }

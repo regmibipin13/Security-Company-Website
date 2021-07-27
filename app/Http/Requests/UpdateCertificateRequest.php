@@ -19,7 +19,7 @@ class UpdateCertificateRequest extends FormRequest
         return [
             'qr_code' => [
                 'string',
-                'required',
+                'nullable',
                 'unique:certificates,qr_code,' . request()->route('certificate')->id,
             ],
             'name' => [

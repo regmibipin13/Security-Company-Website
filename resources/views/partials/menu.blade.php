@@ -117,16 +117,6 @@
                 </a>
             </li>
         @endcan
-        @can('qr_generate_access')
-            <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.qr-generates.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/qr-generates") || request()->is("admin/qr-generates/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fas fa-qrcode c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.qrGenerate.title') }}
-                </a>
-            </li>
-        @endcan
         @can('certificate_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.certificates.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/certificates") || request()->is("admin/certificates/*") ? "c-active" : "" }}">

@@ -7,12 +7,14 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route("admin.settings.update", [$setting->id]) }}" enctype="multipart/form-data">
-            @method('PUT')
+        <form method="POST" action="{{ $setting ? route("admin.settings.update", [$setting->id]) : route("admin.settings.store") }}" enctype="multipart/form-data">
+            @if($setting !== null)
+                @method('PUT')
+            @endif
             @csrf
             <div class="form-group">
                 <label class="required" for="site_title">{{ trans('cruds.setting.fields.site_title') }}</label>
-                <input class="form-control {{ $errors->has('site_title') ? 'is-invalid' : '' }}" type="text" name="site_title" id="site_title" value="{{ old('site_title', $setting->site_title) }}" required>
+                <input class="form-control {{ $errors->has('site_title') ? 'is-invalid' : '' }}" type="text" name="site_title" id="site_title" value="{{ old('site_title', $setting ? $setting->site_title : '') }}" required>
                 @if($errors->has('site_title'))
                     <div class="invalid-feedback">
                         {{ $errors->first('site_title') }}
@@ -22,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label for="site_description">{{ trans('cruds.setting.fields.site_description') }}</label>
-                <textarea class="form-control {{ $errors->has('site_description') ? 'is-invalid' : '' }}" name="site_description" id="site_description">{{ old('site_description', $setting->site_description) }}</textarea>
+                <textarea class="form-control {{ $errors->has('site_description') ? 'is-invalid' : '' }}" name="site_description" id="site_description">{{ old('site_description', $setting ? $setting->site_description : '') }}</textarea>
                 @if($errors->has('site_description'))
                     <div class="invalid-feedback">
                         {{ $errors->first('site_description') }}
@@ -43,7 +45,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="company_full_address">{{ trans('cruds.setting.fields.company_full_address') }}</label>
-                <input class="form-control {{ $errors->has('company_full_address') ? 'is-invalid' : '' }}" type="text" name="company_full_address" id="company_full_address" value="{{ old('company_full_address', $setting->company_full_address) }}" required>
+                <input class="form-control {{ $errors->has('company_full_address') ? 'is-invalid' : '' }}" type="text" name="company_full_address" id="company_full_address" value="{{ old('company_full_address', $setting ? $setting->company_full_address : '') }}" required>
                 @if($errors->has('company_full_address'))
                     <div class="invalid-feedback">
                         {{ $errors->first('company_full_address') }}
@@ -53,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="company_email">{{ trans('cruds.setting.fields.company_email') }}</label>
-                <input class="form-control {{ $errors->has('company_email') ? 'is-invalid' : '' }}" type="email" name="company_email" id="company_email" value="{{ old('company_email', $setting->company_email) }}" required>
+                <input class="form-control {{ $errors->has('company_email') ? 'is-invalid' : '' }}" type="email" name="company_email" id="company_email" value="{{ old('company_email', $setting ? $setting->company_email : '') }}" required>
                 @if($errors->has('company_email'))
                     <div class="invalid-feedback">
                         {{ $errors->first('company_email') }}
@@ -63,7 +65,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="google_map_location">{{ trans('cruds.setting.fields.google_map_location') }}</label>
-                <textarea class="form-control {{ $errors->has('google_map_location') ? 'is-invalid' : '' }}" name="google_map_location" id="google_map_location" required>{{ old('google_map_location', $setting->google_map_location) }}</textarea>
+                <textarea class="form-control {{ $errors->has('google_map_location') ? 'is-invalid' : '' }}" name="google_map_location" id="google_map_location" required>{{ old('google_map_location', $setting ? $setting->google_map_location : '') }}</textarea>
                 @if($errors->has('google_map_location'))
                     <div class="invalid-feedback">
                         {{ $errors->first('google_map_location') }}
@@ -73,7 +75,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="support_number">{{ trans('cruds.setting.fields.support_number') }}</label>
-                <input class="form-control {{ $errors->has('support_number') ? 'is-invalid' : '' }}" type="text" name="support_number" id="support_number" value="{{ old('support_number', $setting->support_number) }}" required>
+                <input class="form-control {{ $errors->has('support_number') ? 'is-invalid' : '' }}" type="text" name="support_number" id="support_number" value="{{ old('support_number', $setting ? $setting->support_number : '') }}" required>
                 @if($errors->has('support_number'))
                     <div class="invalid-feedback">
                         {{ $errors->first('support_number') }}
@@ -83,7 +85,7 @@
             </div>
             <div class="form-group">
                 <label for="facebook_link">{{ trans('cruds.setting.fields.facebook_link') }}</label>
-                <input class="form-control {{ $errors->has('facebook_link') ? 'is-invalid' : '' }}" type="text" name="facebook_link" id="facebook_link" value="{{ old('facebook_link', $setting->facebook_link) }}">
+                <input class="form-control {{ $errors->has('facebook_link') ? 'is-invalid' : '' }}" type="text" name="facebook_link" id="facebook_link" value="{{ old('facebook_link', $setting ? $setting->facebook_link : '') }}">
                 @if($errors->has('facebook_link'))
                     <div class="invalid-feedback">
                         {{ $errors->first('facebook_link') }}
@@ -93,7 +95,7 @@
             </div>
             <div class="form-group">
                 <label for="instagram_link">{{ trans('cruds.setting.fields.instagram_link') }}</label>
-                <input class="form-control {{ $errors->has('instagram_link') ? 'is-invalid' : '' }}" type="text" name="instagram_link" id="instagram_link" value="{{ old('instagram_link', $setting->instagram_link) }}">
+                <input class="form-control {{ $errors->has('instagram_link') ? 'is-invalid' : '' }}" type="text" name="instagram_link" id="instagram_link" value="{{ old('instagram_link', $setting ? $setting->instagram_link : '') }}">
                 @if($errors->has('instagram_link'))
                     <div class="invalid-feedback">
                         {{ $errors->first('instagram_link') }}
@@ -103,7 +105,7 @@
             </div>
             <div class="form-group">
                 <label for="twitter_link">{{ trans('cruds.setting.fields.twitter_link') }}</label>
-                <input class="form-control {{ $errors->has('twitter_link') ? 'is-invalid' : '' }}" type="text" name="twitter_link" id="twitter_link" value="{{ old('twitter_link', $setting->twitter_link) }}">
+                <input class="form-control {{ $errors->has('twitter_link') ? 'is-invalid' : '' }}" type="text" name="twitter_link" id="twitter_link" value="{{ old('twitter_link', $setting ? $setting->twitter_link : '') }}">
                 @if($errors->has('twitter_link'))
                     <div class="invalid-feedback">
                         {{ $errors->first('twitter_link') }}
@@ -113,7 +115,7 @@
             </div>
             <div class="form-group">
                 <label for="linkedin_link">{{ trans('cruds.setting.fields.linkedin_link') }}</label>
-                <input class="form-control {{ $errors->has('linkedin_link') ? 'is-invalid' : '' }}" type="text" name="linkedin_link" id="linkedin_link" value="{{ old('linkedin_link', $setting->linkedin_link) }}">
+                <input class="form-control {{ $errors->has('linkedin_link') ? 'is-invalid' : '' }}" type="text" name="linkedin_link" id="linkedin_link" value="{{ old('linkedin_link', $setting ? $setting->linkedin_link : '') }}">
                 @if($errors->has('linkedin_link'))
                     <div class="invalid-feedback">
                         {{ $errors->first('linkedin_link') }}

@@ -196,46 +196,26 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 47,
-                'title' => 'qr_generate_create',
-            ],
-            [
-                'id'    => 48,
-                'title' => 'qr_generate_edit',
-            ],
-            [
-                'id'    => 49,
-                'title' => 'qr_generate_show',
-            ],
-            [
-                'id'    => 50,
-                'title' => 'qr_generate_delete',
-            ],
-            [
-                'id'    => 51,
-                'title' => 'qr_generate_access',
-            ],
-            [
-                'id'    => 52,
                 'title' => 'certificate_create',
             ],
             [
-                'id'    => 53,
+                'id'    => 48,
                 'title' => 'certificate_edit',
             ],
             [
-                'id'    => 54,
+                'id'    => 49,
                 'title' => 'certificate_show',
             ],
             [
-                'id'    => 55,
+                'id'    => 50,
                 'title' => 'certificate_delete',
             ],
             [
-                'id'    => 56,
+                'id'    => 51,
                 'title' => 'certificate_access',
             ],
             [
-                'id'    => 57,
+                'id'    => 52,
                 'title' => 'profile_password_edit',
             ],
         ];

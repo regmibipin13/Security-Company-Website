@@ -10,7 +10,7 @@ class CreateCertificatesTable extends Migration
     {
         Schema::create('certificates', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('qr_code')->unique();
+            $table->string('qr_code')->unique()->nullable();
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
