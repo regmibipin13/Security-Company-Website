@@ -19,7 +19,6 @@ class Website extends Model implements HasMedia
         '/services'     => 'Services',
         '/about-us'     => 'About',
         '/contact-us'   => 'Contact',
-        '/work-with-us' => 'Work With Us',
     ];
 
     public const BUTTON_2_LINK_SELECT = [
@@ -27,7 +26,6 @@ class Website extends Model implements HasMedia
         '/services'     => 'Services',
         '/about-us'     => 'About',
         '/contact-us'   => 'Contact',
-        '/work-with-us' => 'Work With Us',
     ];
 
     public $table = 'websites';

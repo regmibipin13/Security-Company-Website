@@ -2,7 +2,11 @@
 <header class="text-gray-600 body-font" style="box-shadow:0 1px 15px 0 rgba(0,0,0,.2);">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="{{ url('/') }}">
-            <img src="https://themeearth.com/tf/html/securepress/img/logo2.png" class="w-100 h-10 text-white rounded-full" alt="">
+            <img src="{{ $settings->site_logo ? $settings->site_logo->getUrl() : ''  }}" class="w-100 h-10 text-white rounded-full" alt="">
+            &nbsp;
+            <h3 style="font-size: 20px;">
+                {{ $settings->site_title  }}
+            </h3>
         </a>
         <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
             <a class="mr-5 hover:text-gray-900" href="{{ url('/') }}">Home</a>

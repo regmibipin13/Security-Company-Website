@@ -21,7 +21,7 @@ Route::group(['as'=>'frontend.'],function(){
     Route::get('/services',[HomeController::class, 'services'])->name('services');
     Route::get('/services/{service}',[HomeController::class, 'singleService'])->name('singleService');
     Route::get('/about-us',[HomeController::class, 'about'])->name('about');
-    Route::get('work-with-us',[HomeController::class, 'work'])->name('work');
+    Route::get('/testimonials',[HomeController::class, 'testimonials'])->name('testimonials');
     Route::get('/our-teams',[HomeController::class, 'teams'])->name('teams');
     Route::get('/contact-us',[HomeController::class, 'contact'])->name('contact');
 });

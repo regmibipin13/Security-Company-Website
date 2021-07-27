@@ -11,4 +11,16 @@ if(! function_exists('certificateQr')) {
         return qrCode(url('/certificates/'.$code),$type);
     }
 }
+if(! function_exists('isVideoFile')) {
+    function isVideoFile($media = null) {
+        if($media == null) {
+            return false;
+        }
+        $fileType = explode('/', $media->mime_type)[0];
 
+        if($fileType == "video") {
+            return true;
+        }
+        return false;
+    }
+}

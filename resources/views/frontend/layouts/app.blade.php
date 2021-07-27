@@ -9,10 +9,17 @@
 
 </head>
 <body>
-    @include('frontend.partials.header')
+    @php
+        $settings = \App\Models\Setting::with(['media'])->first();
+    @endphp
+    @include('frontend.partials.header',[
+        'settings' => $settings,
+    ])
 
     @yield('content')
 
-    @include('frontend.partials.footer')
+    @include('frontend.partials.footer',[
+        'settings' => $settings,
+    ])
 </body>
 </html>
