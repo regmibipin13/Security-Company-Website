@@ -30,7 +30,7 @@ class UpdateServiceRequest extends FormRequest
             ],
             'slug' => [
                 'string',
-                'required',
+                'nullable',
             ],
         ];
     }

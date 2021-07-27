@@ -30,7 +30,7 @@ class StoreServiceRequest extends FormRequest
             ],
             'slug' => [
                 'string',
-                'required',
+                'nullable',
             ],
             'feature_media' => [
                 'required',

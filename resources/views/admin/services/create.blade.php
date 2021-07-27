@@ -39,16 +39,16 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.service.fields.intro_text_helper') }}</span>
             </div>
-            <div class="form-group">
-                <label class="required" for="slug">{{ trans('cruds.service.fields.slug') }}</label>
-                <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="text" name="slug" id="slug" value="{{ old('slug', '') }}" required>
-                @if($errors->has('slug'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('slug') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.slug_helper') }}</span>
-            </div>
+{{--            <div class="form-group">--}}
+{{--                <label class="required" for="slug">{{ trans('cruds.service.fields.slug') }}</label>--}}
+{{--                <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="text" name="slug" id="slug" value="{{ old('slug', '') }}" required>--}}
+{{--                @if($errors->has('slug'))--}}
+{{--                    <div class="invalid-feedback">--}}
+{{--                        {{ $errors->first('slug') }}--}}
+{{--                    </div>--}}
+{{--                @endif--}}
+{{--                <span class="help-block">{{ trans('cruds.service.fields.slug_helper') }}</span>--}}
+{{--            </div>--}}
             <div class="form-group">
                 <label class="required" for="feature_media">{{ trans('cruds.service.fields.feature_media') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('feature_media') ? 'is-invalid' : '' }}" id="feature_media-dropzone">

@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
 use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
@@ -77,6 +78,7 @@ class ServiceController extends Controller
 
     public function store(StoreServiceRequest $request)
     {
+        $request->merge(['slug'=>Str::slug($request->name, '-')]);
         $service = Service::create($request->all());
 
         if ($request->input('feature_media', false)) {
@@ -99,6 +101,7 @@ class ServiceController extends Controller
 
     public function update(UpdateServiceRequest $request, Service $service)
     {
+        $request->merge(['slug'=>Str::slug($request->name, '-')]);
         $service->update($request->all());
 
         if ($request->input('feature_media', false)) {
