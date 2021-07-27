@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="intro_text">{{ trans('cruds.service.fields.intro_text') }}</label>
-                <input class="form-control {{ $errors->has('intro_text') ? 'is-invalid' : '' }}" type="text" name="intro_text" id="intro_text" value="{{ old('intro_text', $service->intro_text) }}" required>
+                <textarea class="form-control {{ $errors->has('intro_text') ? 'is-invalid' : '' }}" name="intro_text" id="intro_text" rows="3">{{ $service ? $service->intro_text : old('intro_text', '') }}</textarea>
                 @if($errors->has('intro_text'))
                     <div class="invalid-feedback">
                         {{ $errors->first('intro_text') }}

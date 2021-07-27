@@ -1,17 +1,15 @@
 <?php
 
+
 Route::get('/certificates/{qrCode}', function($qrCode) {
     return redirect()->to(\App\Models\Certificate::with(['media'])->where('qr_code',$qrCode)->first()->certificate->getUrl());
 });
-Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));
     }
-
     return redirect()->route('admin.home');
 });
-
 Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', '2fa']], function () {
