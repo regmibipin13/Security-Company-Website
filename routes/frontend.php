@@ -24,4 +24,6 @@ Route::group(['as'=>'frontend.'],function(){
     Route::get('/testimonials',[HomeController::class, 'testimonials'])->name('testimonials');
     Route::get('/our-teams',[HomeController::class, 'teams'])->name('teams');
     Route::get('/contact-us',[HomeController::class, 'contact'])->name('contact');
+
+    Route::post('/media',[HomeController::class, 'storeMedia'])->name('storeMedia');
 });

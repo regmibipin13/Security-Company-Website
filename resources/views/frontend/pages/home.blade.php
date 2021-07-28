@@ -63,7 +63,7 @@
             @endforeach
           <div class="p-2 lg:w-3/3 md:w-3/3 w-full text-center mt-5">
             <a href="{{ route('frontend.services') }}">View All</a>
-        </div>
+          </div>
     </div>
 </section>
 
