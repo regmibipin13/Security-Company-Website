@@ -58,7 +58,6 @@ class SettingsController extends Controller
     public function update(UpdateSettingRequest $request, Setting $setting)
     {
         $setting->update($request->all());
-
         if ($request->input('site_logo', false)) {
             if (!$setting->site_logo || $request->input('site_logo') !== $setting->site_logo->file_name) {
                 if ($setting->site_logo) {

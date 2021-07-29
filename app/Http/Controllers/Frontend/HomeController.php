@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
+use App\Mail\CompanyMail;
+use App\Mail\EmployeeMail;
 use App\Models\GalleryCollection;
 use App\Models\Service;
 use App\Models\Setting;
@@ -11,10 +13,11 @@ use App\Models\Team;
 use App\Models\Testimonial;
 use App\Models\Website;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
-    use MediaUploadingTrait;
+    // use MediaUploadingTrait;
 
     public function index()
     {
@@ -64,4 +67,81 @@ class HomeController extends Controller
         $testimonials = Testimonial::paginate(10);
         return view('frontend.pages.testimonials',compact('testimonials'));
     }
+
+
+
+    // Api Controller From Here
+
+    public function apiCompany(Request $request)
+    {
+        $email = Setting::first()->company_email;
+        Mail::to($email)->queue(new CompanyMail($request->all()));
+
+        return response()->json(['success'=>'Operation Success']);
+    }
+    public function apiEmployee(Request $request)
+    {
+        $sanitized = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'message' => 'nullable',
+            'files' => 'required',
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'message' => $request->message,
+            'files' => $request->input('files')
+        ];
+        $email = Setting::first()->company_email;
+        Mail::to($email)->queue(new EmployeeMail($data));
+        // return "success";
+        return redirect()->back()->with('success','Form Submitted Successfully');
+    }
+
+    public function storeMedia(Request $request)
+    {
+        // Validates file size
+        if (request()->has('size')) {
+            $this->validate(request(), [
+                'file' => 'max:' . request()->input('size') * 1024,
+            ]);
+        }
+        // If width or height is preset - we are validating it as an image
+        if (request()->has('width') || request()->has('height')) {
+            $this->validate(request(), [
+                'file' => sprintf(
+                    'image|dimensions:max_width=%s,max_height=%s',
+                    request()->input('width', 100000),
+                    request()->input('height', 100000)
+                ),
+            ]);
+        }
+
+        $path = storage_path('app/public/employees');
+
+        try {
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
+            }
+        } catch (\Exception $e) {
+        }
+
+        $file = $request->file('file');
+
+        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+
+        $file->move($path, $name);
+
+        return response()->json([
+            'name'          => '/employees/'.$name,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
+    }
+
 }

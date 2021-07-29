@@ -27,3 +27,9 @@ Route::group(['as'=>'frontend.'],function(){
 
     Route::post('/media',[HomeController::class, 'storeMedia'])->name('storeMedia');
 });
+
+
+Route::group(['prefix'=>'api/v1/'], function(){
+    Route::post('/contact/company',[HomeController::class, 'apiCompany']);
+    Route::post('/contact/employee',[HomeController::class, 'apiEmployee']);
+});
