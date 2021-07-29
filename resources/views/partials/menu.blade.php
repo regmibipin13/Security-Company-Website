@@ -97,7 +97,7 @@
                 </a>
             </li>
         @endcan
-        @can('gallery_collection_access')
+        {{-- @can('gallery_collection_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.gallery-collections.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/gallery-collections") || request()->is("admin/gallery-collections/*") ? "c-active" : "" }}">
                     <i class="fa-fw fas fa-camera c-sidebar-nav-icon">
@@ -106,7 +106,7 @@
                     {{ trans('cruds.galleryCollection.title') }}
                 </a>
             </li>
-        @endcan
+        @endcan --}}
         @can('setting_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.settings.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/settings") || request()->is("admin/settings/*") ? "c-active" : "" }}">

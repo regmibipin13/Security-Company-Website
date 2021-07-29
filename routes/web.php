@@ -57,10 +57,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('testimonials', 'TestimonialsController');
 
     // Gallery Collections
-    Route::delete('gallery-collections/destroy', 'GalleryCollectionsController@massDestroy')->name('gallery-collections.massDestroy');
-    Route::post('gallery-collections/media', 'GalleryCollectionsController@storeMedia')->name('gallery-collections.storeMedia');
-    Route::post('gallery-collections/ckmedia', 'GalleryCollectionsController@storeCKEditorImages')->name('gallery-collections.storeCKEditorImages');
-    Route::resource('gallery-collections', 'GalleryCollectionsController');
+    // Route::delete('gallery-collections/destroy', 'GalleryCollectionsController@massDestroy')->name('gallery-collections.massDestroy');
+    // Route::post('gallery-collections/media', 'GalleryCollectionsController@storeMedia')->name('gallery-collections.storeMedia');
+    // Route::post('gallery-collections/ckmedia', 'GalleryCollectionsController@storeCKEditorImages')->name('gallery-collections.storeCKEditorImages');
+    // Route::resource('gallery-collections', 'GalleryCollectionsController');
 
     // Qr Generate
     Route::delete('qr-generates/destroy', 'QrGenerateController@massDestroy')->name('qr-generates.massDestroy');

@@ -1,7 +1,7 @@
 <?php
 
 if(! function_exists('qrCode')) {
-    function qrCode($target, $type) {
+    function qrCode($target = '', $type = 'svg') {
         return \SimpleSoftwareIO\QrCode\Facades\QrCode::format($type)->size(200)->generate($target);
     }
 }

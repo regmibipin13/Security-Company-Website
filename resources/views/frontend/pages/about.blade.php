@@ -17,7 +17,7 @@
     </div>
 </section>
 
-<section class="text-gray-600 body-font">
+{{-- <section class="text-gray-600 body-font">
     <div class="container px-5 py-20 mx-auto flex flex-wrap">
 
       <div class="flex flex-wrap md:-m-2 -m-1">
@@ -33,6 +33,6 @@
           @endforeach
       </div>
     </div>
-  </section>
+  </section> --}}
 
 @endsection

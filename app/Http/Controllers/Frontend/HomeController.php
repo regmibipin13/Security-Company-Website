@@ -37,21 +37,21 @@ class HomeController extends Controller
 
     public function singleService($slug)
     {
-        $service = Service::where('slug',$slug)->first();
+        $service = Service::where('slug',$slug)->firstOrFail();
         $service->load(['media']);
         return view('frontend.pages.single_service',compact('service'));
     }
 
     public function about()
     {
-        $website = Website::first();
+        $website = Website::firstOrFail();
         $website->load(['media']);
-        $galleries = GalleryCollection::with(['media'])->paginate(2);
-        return view('frontend.pages.about',compact('website','galleries'));
+        // $galleries = GalleryCollection::with(['media'])->paginate(2);
+        return view('frontend.pages.about',compact('website'));
     }
     public function contact()
     {
-        $settings = Setting::first();
+        $settings = Setting::firstOrFail();
         return view('frontend.pages.contact',compact('settings'));
     }
 
@@ -67,7 +67,6 @@ class HomeController extends Controller
         $testimonials = Testimonial::paginate(10);
         return view('frontend.pages.testimonials',compact('testimonials'));
     }
-
 
 
     // Api Controller From Here
