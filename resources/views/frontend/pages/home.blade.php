@@ -93,7 +93,7 @@
               </div>
             </div>
           @endforeach
-        <div class="p-2 lg:w-3/3 md:w-3/3 w-full text-center mt-5">
+        <div class="p-2 lg:w-3/3 md:w-3/3 w-full text-center mt-5 mb-5">
             <a href="{{ route('frontend.teams') }}">View All</a>
         </div>
       </div>
@@ -126,7 +126,7 @@
                   </div>
                 </div>
           @endforeach
-          <div class="p-2 lg:w-3/3 md:w-3/3 w-full text-center mt-5">
+          <div class="p-2 lg:w-3/3 md:w-3/3 w-full text-center mt-5 mb-5">
               <a href="{{ route('frontend.testimonials') }}">View All</a>
           </div>
       </div>
