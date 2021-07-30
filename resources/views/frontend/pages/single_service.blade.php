@@ -21,7 +21,7 @@
             </div>
 
           <div class="flex mt-5">
-            <a class="flex mr-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" href="{{ route('frontend.contact') }}">Contact Us To Get the Service</a>
+            <span style="font-weight: 1000; color:#ccc;">Please Contact Us to Get this service</span>
           </div>
         </div>
       </div>

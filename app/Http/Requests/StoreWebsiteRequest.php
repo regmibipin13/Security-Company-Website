@@ -49,7 +49,7 @@ class StoreWebsiteRequest extends FormRequest
                 'required',
             ],
             'about_image' => [
-                'required',
+                'nullable',
             ],
         ];
     }

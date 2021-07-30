@@ -29,7 +29,7 @@ class UpdateSettingRequest extends FormRequest
                 'required',
             ],
             'google_map_location' => [
-                'required',
+                'nullable',
             ],
             'support_number' => [
                 'string',

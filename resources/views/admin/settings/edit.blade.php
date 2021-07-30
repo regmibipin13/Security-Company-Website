@@ -63,7 +63,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.setting.fields.company_email_helper') }}</span>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label class="required" for="google_map_location">{{ trans('cruds.setting.fields.google_map_location') }}</label>
                 <textarea class="form-control {{ $errors->has('google_map_location') ? 'is-invalid' : '' }}" name="google_map_location" id="google_map_location" required>{{ old('google_map_location', $setting ? $setting->google_map_location : '') }}</textarea>
                 @if($errors->has('google_map_location'))
@@ -72,7 +72,7 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.setting.fields.google_map_location_helper') }}</span>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label class="required" for="support_number">{{ trans('cruds.setting.fields.support_number') }}</label>
                 <input class="form-control {{ $errors->has('support_number') ? 'is-invalid' : '' }}" type="text" name="support_number" id="support_number" value="{{ old('support_number', $setting ? $setting->support_number : '') }}" required>

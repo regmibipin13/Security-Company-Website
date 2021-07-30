@@ -137,7 +137,7 @@
                     </div>
                   </div>
                   <div class="mt-5" style="max-width: 100%;">
-                      {!! $settings->google_map_location !!}
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7031.890629260507!2d83.985137!3d28.208974!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399595a600f6e6b7%3A0xfcdb95504cee8fd1!2sSiddhartha%20Hwy%2C%20Pokhara%2033700%2C%20Nepal!5e0!3m2!1sen!2sus!4v1627612141719!5m2!1sen!2sus" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                   </div>
                 </div>
               </div>

@@ -117,7 +117,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.website.fields.about_us_text_helper') }}</span>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label class="required" for="about_image">{{ trans('cruds.website.fields.about_image') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('about_image') ? 'is-invalid' : '' }}" id="about_image-dropzone">
                 </div>
@@ -127,7 +127,7 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.website.fields.about_image_helper') }}</span>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label for="our_team_text">{{ trans('cruds.website.fields.our_team_text') }}</label>
                 <textarea class="form-control {{ $errors->has('our_team_text') ? 'is-invalid' : '' }}" name="our_team_text" id="our_team_text">{{ old('our_team_text') }}</textarea>

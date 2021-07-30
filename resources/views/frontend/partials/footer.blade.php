@@ -6,8 +6,11 @@
             <img src="{{ $settings->site_logo ? $settings->site_logo->getUrl() : '' }}" class="w-100 h-10 text-white rounded-full" alt="">
         </a>
         <p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© {{ \Carbon\Carbon::now()->format('Y')  }} All Rights Reserved
-          <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@ {{ $settings->site_title }}</a>
+          <a href="{{ url('/') }}" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@ {{ $settings->site_title }}</a>
         </p>
+        <p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">
+            <a href="{{ url('/login') }}" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">Login</a>
+          </p>
         <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
           <a class="text-gray-500" href="{{ $settings->facebook_link }}">
             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
