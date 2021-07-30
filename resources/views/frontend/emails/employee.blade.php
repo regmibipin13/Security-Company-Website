@@ -209,7 +209,7 @@ a[x-apple-data-detectors] {
                       <td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#666666;font-size:14px"><strong>
                           Citizenships -
                           @foreach($data['files'] as $file)
-                          <img src="{{ asset($file) }}" alt="{{ $file }}" width="500" height="500">
+                          <img src="{{ asset('storage/'.$file) }}" alt="{{ $file }}" width="500" height="500">
                           @endforeach
                         </strong></p>
                     </td>
