@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Setting;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class HomeController
@@ -118,5 +119,12 @@ class HomeController
         }
 
         return view('home', compact('settings1', 'settings2', 'settings3'));
+    }
+
+    public function ec()
+    {
+        $settings = Setting::first();
+        $settings->load(['media']);
+        return view('admin.ec',compact('settings'));
     }
 }

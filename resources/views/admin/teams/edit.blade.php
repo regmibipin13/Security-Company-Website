@@ -31,6 +31,53 @@
                 <span class="help-block">{{ trans('cruds.team.fields.position_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="email">{{ trans('cruds.team.fields.email') }}</label>
+                <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" id="email" value="{{ old('email', $team->email) }}">
+                @if($errors->has('email'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('email') }}
+                    </div>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <label class="required" for="phone">{{ trans('cruds.team.fields.phone') }}</label>
+                <input class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" type="text" name="phone" id="phone" value="{{ old('phone', $team->phone) }}" required>
+                @if($errors->has('phone'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('phone') }}
+                    </div>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <label class="required" for="address">{{ trans('cruds.team.fields.address') }}</label>
+                <input class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" type="text" name="address" id="address" value="{{ old('address', $team->address) }}" required>
+                @if($errors->has('address'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('address') }}
+                    </div>
+                @endif
+            </div>
+            <div class="form-group">
+                <label class="required" for="started_from">{{ trans('cruds.team.fields.started_from') }}</label>
+                <input class="form-control {{ $errors->has('started_from') ? 'is-invalid' : '' }}" type="date" name="started_from" id="started_from" value="{{ old('started_from', $team->started_from) }}" required>
+                @if($errors->has('started_from'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('started_from') }}
+                    </div>
+                @endif
+            </div>
+            <div class="form-group" id="ended_at_div">
+                <label class="required" for="ended_at">{{ trans('cruds.team.fields.ended_at') }}</label>
+                <input class="form-control {{ $errors->has('ended_at') ? 'is-invalid' : '' }}" type="date" name="ended_at" id="ended_at" value="{{ old('ended_at', $team->ended_at) }}">
+                @if($errors->has('ended_at'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('ended_at') }}
+                    </div>
+                @endif
+            </div>
+            <div class="form-group">
                 <label for="image">{{ trans('cruds.team.fields.image') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('image') ? 'is-invalid' : '' }}" id="image-dropzone">
                 </div>

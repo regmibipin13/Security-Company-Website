@@ -7,6 +7,7 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyTeamRequest;
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
+use App\Models\Setting;
 use App\Models\Team;
 use Gate;
 use Illuminate\Http\Request;
@@ -153,5 +154,20 @@ class TeamsController extends Controller
         $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    }
+
+    public function certificate($id)
+    {
+        $team = Team::find($id);
+        if($team->ended_at == null) {
+            return "This employee is still working here . Please add ended date to print certificate";
+        }
+        $settings = Setting::first();
+        $settings->load(['media']);
+        $data = [
+            'settings' => $settings,
+            'team' => $team,
+        ];
+        return view('admin.ec',$data);
     }
 }

@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('services', 'ServiceController');
 
     // Teams
+    Route::get('/teams/certificate/{team}','TeamsController@certificate')->name('teams.certificate');
     Route::delete('teams/destroy', 'TeamsController@massDestroy')->name('teams.massDestroy');
     Route::post('teams/media', 'TeamsController@storeMedia')->name('teams.storeMedia');
     Route::post('teams/ckmedia', 'TeamsController@storeCKEditorImages')->name('teams.storeCKEditorImages');
@@ -71,6 +72,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('certificates/media', 'CertificatesController@storeMedia')->name('certificates.storeMedia');
     Route::post('certificates/ckmedia', 'CertificatesController@storeCKEditorImages')->name('certificates.storeCKEditorImages');
     Route::resource('certificates', 'CertificatesController');
+
+    Route::get('/ec', 'HomeController@ec');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function () {
     // Change password

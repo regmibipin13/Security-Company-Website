@@ -29,6 +29,12 @@ class Team extends Model implements HasMedia
     protected $fillable = [
         'name',
         'position',
+        'email',
+        'phone',
+        'address',
+        'started_from',
+        'ended_at',
+        'still_working',
         'created_at',
         'updated_at',
         'deleted_at',

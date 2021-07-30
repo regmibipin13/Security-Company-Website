@@ -25,6 +25,30 @@ class UpdateTeamRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'email' => [
+                'string',
+                'nullable',
+            ],
+            'phone' => [
+                'string',
+                'required',
+            ],
+            'address' => [
+                'string',
+                'required',
+            ],
+            'started_from' => [
+                'string',
+                'required',
+            ],
+            'ended_at' => [
+                'string',
+                'nullable',
+            ],
+            'still_working' => [
+                'string',
+                'nullable',
+            ],
         ];
     }
 }

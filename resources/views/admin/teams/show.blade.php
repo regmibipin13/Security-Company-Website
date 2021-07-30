@@ -12,6 +12,9 @@
                 <a class="btn btn-default" href="{{ route('admin.teams.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
+                <a class="btn btn-secondary" href="{{ route('admin.teams.certificate',$team->id) }}" target="_blank">
+                    Print Experience Certificate
+                </a>
             </div>
             <table class="table table-bordered table-striped">
                 <tbody>
@@ -41,6 +44,46 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.team.fields.email') }}
+                        </th>
+                        <td>
+                            {{ $team->email }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.team.fields.phone') }}
+                        </th>
+                        <td>
+                            {{ $team->phone }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.team.fields.address') }}
+                        </th>
+                        <td>
+                            {{ $team->address }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.team.fields.started_from') }}
+                        </th>
+                        <td>
+                            {{ $team->started_from }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.team.fields.ended_at') }}
+                        </th>
+                        <td>
+                            {{ $team->ended_at ? $team->ended_at : 'Still Working' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.team.fields.image') }}
                         </th>
                         <td>
@@ -62,6 +105,5 @@
     </div>
 </div>
 
-
-
 @endsection
+

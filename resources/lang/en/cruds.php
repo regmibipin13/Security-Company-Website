@@ -185,6 +185,12 @@ return [
             'updated_at_helper' => ' ',
             'deleted_at'        => 'Deleted at',
             'deleted_at_helper' => ' ',
+            'email' => 'Email',
+            'phone' => 'Phone',
+            'address' => 'Address',
+            'started_from' => 'Started Working From',
+            'ended_at' => 'Ended Working In',
+            'still_working' => 'Still Working Here',
         ],
     ],
     'testimonial' => [
