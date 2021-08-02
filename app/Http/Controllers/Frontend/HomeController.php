@@ -86,9 +86,8 @@ class HomeController extends Controller
             'phone' => 'required',
             'address' => 'required',
             'message' => 'nullable',
-            'files' => 'required',
+            'files' => 'required | array | min:3',
         ]);
-
         $data = [
             'name' => $request->name,
             'email' => $request->email,

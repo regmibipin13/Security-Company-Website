@@ -36,6 +36,22 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.team.fields.father_name') }}
+                        </th>
+                        <td>
+                            {{ $team->father_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.team.fields.grandfather_name') }}
+                        </th>
+                        <td>
+                            {{ $team->grandfather_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.team.fields.position') }}
                         </th>
                         <td>

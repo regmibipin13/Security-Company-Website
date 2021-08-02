@@ -21,6 +21,14 @@ class StoreTeamRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'father_name' => [
+                'string',
+                'required',
+            ],
+            'grandfather_name' => [
+                'string',
+                'required',
+            ],
             'position' => [
                 'string',
                 'required',

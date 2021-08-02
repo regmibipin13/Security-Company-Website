@@ -70,6 +70,15 @@
                     </span>
                   </div>
                   @endif
+                  @if($message = Session::get('error'))
+                  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                      <strong class="font-bold">Success !</strong>
+                      <span class="block sm:inline">{{ $message }}.</span>
+                      <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                        <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                      </span>
+                    </div>
+                    @endif
                   @if($errors->any())
                   <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     <strong class="font-bold">Error !</strong>
@@ -102,7 +111,15 @@
                                   <input type="text" id="address" value="{{ old('address') }}" name="address" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                               </div>
                               <div class="relative mb-4">
-                                  <label class="required" for="files">Your Citizenship (Upload your Front and Back Side of the ID Seperately)</label>
+                                  <label class="required" for="files">Files</label><br />
+                                  <div class="notice pt-2 pb-3">
+                                    <span>PLease Attach Three Files here .</span>
+                                    <ul class="pl-2">
+                                        <li>1.Front Image of your Citizenship</li>
+                                        <li>2.Back Image of your Citizenship</li>
+                                        <li>3.Clear Passport Size photo</li>
+                                    </ul>
+                                  </div>
                                   <div class="needsclick dropzone {{ $errors->has('files') ? 'is-invalid' : '' }}" id="files-dropzone">
                                   </div>
                                   @if($errors->has('files'))

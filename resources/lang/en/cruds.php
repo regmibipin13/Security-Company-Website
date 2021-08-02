@@ -191,6 +191,8 @@ return [
             'started_from' => 'Started Working From',
             'ended_at' => 'Ended Working In',
             'still_working' => 'Still Working Here',
+            'father_name' => "Father's Name",
+            'grandfather_name' => "Grandfather's name",
         ],
     ],
     'testimonial' => [

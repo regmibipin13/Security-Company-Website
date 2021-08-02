@@ -21,6 +21,26 @@
                 <span class="help-block">{{ trans('cruds.team.fields.name_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="father_name">{{ trans('cruds.team.fields.father_name') }}</label>
+                <input class="form-control {{ $errors->has('father_name') ? 'is-invalid' : '' }}" type="text" name="father_name" id="father_name" value="{{ old('father_name', $team->father_name) }}" required>
+                @if($errors->has('father_name'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('father_name') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.team.fields.name_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="grandfather_name">{{ trans('cruds.team.fields.grandfather_name') }}</label>
+                <input class="form-control {{ $errors->has('grandfather_name') ? 'is-invalid' : '' }}" type="text" name="grandfather_name" id="grandfather_name" value="{{ old('grandfather_name', $team->grandfather_name) }}" required>
+                @if($errors->has('grandfather_name'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('grandfather_name') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.team.fields.name_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label class="required" for="position">{{ trans('cruds.team.fields.position') }}</label>
                 <input class="form-control {{ $errors->has('position') ? 'is-invalid' : '' }}" type="text" name="position" id="position" value="{{ old('position', $team->position) }}" required>
                 @if($errors->has('position'))

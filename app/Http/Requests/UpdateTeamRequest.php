@@ -25,6 +25,14 @@ class UpdateTeamRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'father_name' => [
+                'string',
+                'required',
+            ],
+            'grandfather_name' => [
+                'string',
+                'required',
+            ],
             'email' => [
                 'string',
                 'nullable',

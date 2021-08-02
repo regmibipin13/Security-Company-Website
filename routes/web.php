@@ -1,8 +1,20 @@
 <?php
 
+use App\Models\Setting;
+use App\Models\Team;
 
 Route::get('/certificates/{qrCode}', function($qrCode) {
     return redirect()->to(\App\Models\Certificate::with(['media'])->where('qr_code',$qrCode)->first()->certificate->getUrl());
+});
+
+Route::get('/employees/certificate/{team}', function($id) {
+    $settings = Setting::first()->load(['media']);
+    $team = Team::find($id)->load(['media']);
+    $data = [
+        'settings' => $settings,
+        'team' => $team
+    ];
+    return view('admin.ec',$data);
 });
 Route::get('/home', function () {
     if (session('status')) {
@@ -73,7 +85,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('certificates/ckmedia', 'CertificatesController@storeCKEditorImages')->name('certificates.storeCKEditorImages');
     Route::resource('certificates', 'CertificatesController');
 
-    Route::get('/ec', 'HomeController@ec');
+    // Route::get('/ec', 'HomeController@ec');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function () {
     // Change password
