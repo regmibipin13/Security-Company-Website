@@ -32,6 +32,9 @@ class UpdateUserRequest extends FormRequest
                 'required',
                 'array',
             ],
+            'employee_id' => [
+                'nullable'
+            ]
         ];
     }
 }

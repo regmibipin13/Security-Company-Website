@@ -4,12 +4,12 @@ namespace App\Models;
 
 use \DateTimeInterface;
 use Carbon\Carbon;
-use Hash;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -39,6 +39,7 @@ class User extends Authenticatable
         'password',
         'two_factor_code',
         'remember_token',
+        'employee_id',
         'created_at',
         'updated_at',
         'deleted_at',

@@ -33,12 +33,12 @@ class UsersController extends Controller
                 $crudRoutePart = 'users';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -49,6 +49,9 @@ class UsersController extends Controller
             });
             $table->editColumn('email', function ($row) {
                 return $row->email ? $row->email : '';
+            });
+            $table->editColumn('employee_id', function ($row) {
+                return $row->employee_id ? $row->employee_id : '';
             });
 
             $table->editColumn('two_factor', function ($row) {

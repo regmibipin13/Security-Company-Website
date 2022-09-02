@@ -3,18 +3,18 @@
 use App\Models\Setting;
 use App\Models\Team;
 
-Route::get('/certificates/{qrCode}', function($qrCode) {
-    return redirect()->to(\App\Models\Certificate::with(['media'])->where('qr_code',$qrCode)->first()->certificate->getUrl());
+Route::get('/certificates/{qrCode}', function ($qrCode) {
+    return redirect()->to(\App\Models\Certificate::with(['media'])->where('qr_code', $qrCode)->first()->certificate->getUrl());
 });
 
-Route::get('/employees/certificate/{team}', function($id) {
+Route::get('/employees/certificate/{team}', function ($id) {
     $settings = Setting::first()->load(['media']);
     $team = Team::find($id)->load(['media']);
     $data = [
         'settings' => $settings,
         'team' => $team
     ];
-    return view('admin.ec',$data);
+    return view('admin.ec', $data);
 });
 Route::get('/home', function () {
     if (session('status')) {
@@ -22,6 +22,8 @@ Route::get('/home', function () {
     }
     return redirect()->route('admin.home');
 });
+Route::get('/employee_login', 'Auth\LoginController@showEmployeeLoginForm')->name('showEmployeeLoginForm')->middleware('guest');
+Route::post('/employee_login', 'Auth\LoginController@employeeLogin')->name('employee_login');
 Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', '2fa']], function () {
@@ -57,7 +59,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('services', 'ServiceController');
 
     // Teams
-    Route::get('/teams/certificate/{team}','TeamsController@certificate')->name('teams.certificate');
+    Route::get('/teams/certificate/{team}', 'TeamsController@certificate')->name('teams.certificate');
     Route::delete('teams/destroy', 'TeamsController@massDestroy')->name('teams.massDestroy');
     Route::post('teams/media', 'TeamsController@storeMedia')->name('teams.storeMedia');
     Route::post('teams/ckmedia', 'TeamsController@storeCKEditorImages')->name('teams.storeCKEditorImages');
@@ -76,16 +78,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Route::resource('gallery-collections', 'GalleryCollectionsController');
 
     // Qr Generate
-    Route::delete('qr-generates/destroy', 'QrGenerateController@massDestroy')->name('qr-generates.massDestroy');
-    Route::resource('qr-generates', 'QrGenerateController');
+    // Route::delete('qr-generates/destroy', 'QrGenerateController@massDestroy')->name('qr-generates.massDestroy');
+    // Route::resource('qr-generates', 'QrGenerateController');
 
     // Certificates
     Route::delete('certificates/destroy', 'CertificatesController@massDestroy')->name('certificates.massDestroy');
     Route::post('certificates/media', 'CertificatesController@storeMedia')->name('certificates.storeMedia');
     Route::post('certificates/ckmedia', 'CertificatesController@storeCKEditorImages')->name('certificates.storeCKEditorImages');
     Route::resource('certificates', 'CertificatesController');
-    
-     // Employee Form
+
+    // Employee Form
     Route::delete('employee-forms/destroy', 'EmployeeFormController@massDestroy')->name('employee-forms.massDestroy');
     Route::post('employee-forms/media', 'EmployeeFormController@storeMedia')->name('employee-forms.storeMedia');
     Route::post('employee-forms/ckmedia', 'EmployeeFormController@storeCKEditorImages')->name('employee-forms.storeCKEditorImages');
@@ -100,6 +102,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('training-forms/media', 'TrainingFormController@storeMedia')->name('training-forms.storeMedia');
     Route::post('training-forms/ckmedia', 'TrainingFormController@storeCKEditorImages')->name('training-forms.storeCKEditorImages');
     Route::resource('training-forms', 'TrainingFormController');
+
+
+    Route::post('reports/media', 'EmployeeReportsController@storeMedia')->name('reports.storeMedia');
+    Route::post('reports/ckmedia', 'EmployeeReportsController@storeCKEditorImages')->name('reports.storeCKEditorImages');
+    Route::delete('reports/destroy', 'EmployeeReportsController@massDestroy')->name('reports.massDestroy');
+    Route::resource('reports', 'EmployeeReportsController');
+
+
+    // Marketing
+    Route::delete('marketings/destroy', 'MarketingController@massDestroy')->name('marketings.massDestroy');
+    Route::resource('marketings', 'MarketingController');
 
     // Route::get('/ec', 'HomeController@ec');
 });

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Notifications\TwoFactorCodeNotification;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -44,5 +46,22 @@ class LoginController extends Controller
             $user->generateTwoFactorCode();
             $user->notify(new TwoFactorCodeNotification());
         }
+    }
+
+    public function showEmployeeLoginForm()
+    {
+        return view('auth.employee_login');
+    }
+
+    public function employeeLogin(Request $request)
+    {
+        $employee = User::where('employee_id', $request->employee_id)->first();
+        if (!$employee) {
+            return redirect()->back()->with('error', 'Sorry Provided Employee Id does not match our system');
+        }
+
+        Auth::login($employee);
+
+        return redirect()->to('/admin');
     }
 }
