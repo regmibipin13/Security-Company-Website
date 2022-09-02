@@ -114,6 +114,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('marketings/destroy', 'MarketingController@massDestroy')->name('marketings.massDestroy');
     Route::resource('marketings', 'MarketingController');
 
+    // Training Attendance
+    Route::delete('training-attendances/destroy', 'TrainingAttendanceController@massDestroy')->name('training-attendances.massDestroy');
+    Route::resource('training-attendances', 'TrainingAttendanceController');
+
+    // Employee Attendance
+    Route::delete('employee-attendances/destroy', 'EmployeeAttendanceController@massDestroy')->name('employee-attendances.massDestroy');
+    Route::resource('employee-attendances', 'EmployeeAttendanceController');
+
     // Route::get('/ec', 'HomeController@ec');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function () {

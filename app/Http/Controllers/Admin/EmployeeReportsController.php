@@ -46,7 +46,9 @@ class EmployeeReportsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->merge(['employee_id' => auth()->user()->employee_id]);
+        if (auth()->user()->hasRole('Employee')) {
+            $request->merge(['employee_id' => auth()->user()->employee_id]);
+        }
         $sanitized = $request->validate([
             'employee_id' => 'required',
             'date' => 'required',
@@ -110,7 +112,9 @@ class EmployeeReportsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->merge(['employee_id' => auth()->user()->employee_id]);
+        if (auth()->user()->hasRole('Employee')) {
+            $request->merge(['employee_id' => auth()->user()->employee_id]);
+        }
         $employeeReport = EmployeeReport::find($id);
         $sanitized = $request->validate([
             'employee_id' => 'required',

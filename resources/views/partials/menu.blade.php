@@ -194,6 +194,29 @@
             </li>
         @endcan
 
+        @can('training_attendance_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route('admin.training-attendances.index') }}"
+                    class="c-sidebar-nav-link {{ request()->is('admin/training-attendances') || request()->is('admin/training-attendances/*') ? 'c-active' : '' }}">
+                    <i class="fa-fw fas fa-female c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.trainingAttendance.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('employee_attendance_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route('admin.employee-attendances.index') }}"
+                    class="c-sidebar-nav-link {{ request()->is('admin/employee-attendances') || request()->is('admin/employee-attendances/*') ? 'c-active' : '' }}">
+                    <i class="fa-fw fas fa-user-astronaut c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.employeeAttendance.title') }}
+                </a>
+            </li>
+        @endcan
+
         @if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
             @can('profile_password_edit')
                 <li class="c-sidebar-nav-item">

@@ -12,7 +12,7 @@
                     <label class="required" for="employee_id">{{ trans('cruds.employee_reports.fields.employee_id') }}</label>
                     <input class="form-control {{ $errors->has('employee_id') ? 'is-invalid' : '' }}" type="text"
                         name="employee_id" id="employee_id" value="{{ old('employee_id', auth()->user()->employee_id) }}"
-                        required disabled>
+                        required @if (auth()->user()->hasRole('Employee')) disabled @endif>
                     @if ($errors->has('employee_id'))
                         <div class="invalid-feedback">
                             {{ $errors->first('employee_id') }}
