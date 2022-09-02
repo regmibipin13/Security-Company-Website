@@ -19,6 +19,10 @@
                  <a href="{{ url('/employee_login') }}" rel="noopener noreferrer" class="text-gray-600 ml-1"
                      target="_blank">Employee Portal</a>
              </p>
+             <p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">
+                 <a href="{{ url('/satisfaction') }}" rel="noopener noreferrer" class="text-gray-600 ml-1"
+                     target="_blank">Leave Feedback</a>
+             </p>
              <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
                  <a class="text-gray-500" href="{{ $settings->facebook_link }}">
                      <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -14,7 +14,9 @@ use App\Models\Testimonial;
 use App\Models\Website;
 use App\Models\CompanyForm;
 use App\Models\EmployeeForm;
+use App\Models\Satisfaction;
 use App\Models\TrainingForm;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -25,24 +27,24 @@ class HomeController extends Controller
     public function index()
     {
         $website = Website::with(['media'])->first();
-        $services = Service::with(['media'])->orderBy('id','desc')->limit(6)->get();
-        $teams = Team::with(['media'])->where('ended_at',null)->limit(6)->get();
-        $testimonials = Testimonial::with(['media'])->limit(2)->get();
-        return view('frontend.pages.home',compact('website','services','teams','testimonials'));
+        $services = Service::with(['media'])->orderBy('id', 'desc')->limit(6)->get();
+        $teams = Team::with(['media'])->where('ended_at', null)->limit(6)->get();
+        $testimonials = Satisfaction::where('approved', true)->orderBy('id', 'desc')->limit(4)->get();
+        return view('frontend.pages.home', compact('website', 'services', 'teams', 'testimonials'));
     }
 
     public function services()
     {
         $services = Service::with(['media'])->paginate(12);
-        return view('frontend.pages.services',compact('services'));
+        return view('frontend.pages.services', compact('services'));
     }
 
 
     public function singleService($slug)
     {
-        $service = Service::where('slug',$slug)->firstOrFail();
+        $service = Service::where('slug', $slug)->firstOrFail();
         $service->load(['media']);
-        return view('frontend.pages.single_service',compact('service'));
+        return view('frontend.pages.single_service', compact('service'));
     }
 
     public function about()
@@ -50,25 +52,25 @@ class HomeController extends Controller
         $website = Website::firstOrFail();
         $website->load(['media']);
         // $galleries = GalleryCollection::with(['media'])->paginate(2);
-        return view('frontend.pages.about',compact('website'));
+        return view('frontend.pages.about', compact('website'));
     }
     public function contact()
     {
         $settings = Setting::firstOrFail();
-        return view('frontend.pages.contact',compact('settings'));
+        return view('frontend.pages.contact', compact('settings'));
     }
 
     public function teams()
     {
-        $teams = Team::with(['media'])->where('ended_at',null)->paginate(18);
+        $teams = Team::with(['media'])->where('ended_at', null)->paginate(18);
         $website = Website::first();
-        return view('frontend.pages.teams',compact('teams','website'));
+        return view('frontend.pages.teams', compact('teams', 'website'));
     }
 
     public function testimonials()
     {
-        $testimonials = Testimonial::paginate(10);
-        return view('frontend.pages.testimonials',compact('testimonials'));
+        $testimonials = Satisfaction::where('approved', true)->orderBy('id', 'desc')->paginate(10);
+        return view('frontend.pages.testimonials', compact('testimonials'));
     }
 
 
@@ -78,11 +80,11 @@ class HomeController extends Controller
     {
         $email = Setting::first()->company_email;
         Mail::to($email)->queue(new CompanyMail($request->all()));
-        $request->merge(['company_contact'=>$request->company_phone,'contact'=>$request->phone]);
+        $request->merge(['company_contact' => $request->company_phone, 'contact' => $request->phone]);
         $company = CompanyForm::create($request->all());
-        return response()->json(['success'=>'Operation Success']);
+        return response()->json(['success' => 'Operation Success']);
     }
-    
+
     public function apiEmployee(Request $request)
     {
         $sanitized = $request->validate([
@@ -92,7 +94,7 @@ class HomeController extends Controller
             'address' => 'required',
             'message' => 'nullable',
             'files' => 'required | array | min:3',
-            'father_name'=> 'required',
+            'father_name' => 'required',
             'grandfather_name' => 'required',
         ]);
         $employee = EmployeeForm::create($sanitized);
@@ -112,15 +114,15 @@ class HomeController extends Controller
         ];
         $email = Setting::first()->company_email;
         Mail::to($email)->queue(new EmployeeMail($data));
-        
-        
+
+
         // return "success";
-        return redirect()->back()->with('success','Form Submitted Successfully');
+        return redirect()->back()->with('success', 'Form Submitted Successfully');
     }
-    
+
     public function apiTraining(Request $request)
     {
-        $request->merge(['contact'=>$request->phone]);
+        $request->merge(['contact' => $request->phone]);
         $sanitized = $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -131,7 +133,7 @@ class HomeController extends Controller
             'type' => 'required',
             'files' => 'required | array | min:3',
         ]);
-        
+
         $email = Setting::first()->company_email;
         $training = TrainingForm::create($sanitized);
         foreach ($request->input('files', []) as $file) {
@@ -148,9 +150,8 @@ class HomeController extends Controller
             'files' => $training->files,
         ];
         Mail::to($email)->queue(new \App\Mail\TrainingForm($data));
-        
-        return redirect()->back()->with('success','Form Submitted Successfully');
-        
+
+        return redirect()->back()->with('success', 'Form Submitted Successfully');
     }
 
     public function storeMedia(Request $request)
@@ -188,9 +189,57 @@ class HomeController extends Controller
         $file->move($path, $name);
 
         return response()->json([
-            'name'          => '/employees/'.$name,
+            'name'          => '/employees/' . $name,
             'original_name' => $file->getClientOriginalName(),
         ]);
     }
 
+    public function showFeedbackForm()
+    {
+        return view('frontend.pages.feedback');
+    }
+
+    public function storeFeedback(Request $request)
+    {
+        if ($request->has('employee_id')) {
+            $employee = User::where('employee_id', $request->employee_id)->first();
+            if (!$employee) {
+                return redirect()->back()->with('error', 'Employe Id is invalid');
+            }
+
+            $satisfaction = Satisfaction::where('employee_id', $employee->employee_id)->first();
+            if ($satisfaction) {
+                return redirect()->back()->with('error', 'You have already leave us your feedback');
+            }
+
+            $request->validate([
+                'rate' => 'required',
+                'description' => 'required'
+            ]);
+
+            Satisfaction::create([
+                'name' => $employee->name,
+                'email' => $employee->email,
+                'is_employee' => 1,
+                'employee_id' => $employee->employee_id,
+                'rate' => $request->rate,
+                'description' => $request->description,
+                'approved' => 0,
+            ]);
+
+            return redirect()->back()->with('success', 'Your Satisfaction Feedback is stored successfully');
+        }
+
+        $sanitized = $request->validate([
+            'name' => 'required',
+            'email' => 'required | unique:satisfactions',
+            'is_employee' => 'nullable',
+            'employee_id' => 'nullable',
+            'rate' => 'required',
+            'description' => 'required',
+        ]);
+
+        Satisfaction::create($sanitized);
+        return redirect()->back()->with('success', 'Your Satisfaction Feedback is stored successfully');
+    }
 }

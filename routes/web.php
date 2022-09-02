@@ -122,6 +122,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('employee-attendances/destroy', 'EmployeeAttendanceController@massDestroy')->name('employee-attendances.massDestroy');
     Route::resource('employee-attendances', 'EmployeeAttendanceController');
 
+    // Satisfaction
+    Route::delete('satisfactions/destroy', 'SatisfactionController@massDestroy')->name('satisfactions.massDestroy');
+    Route::resource('satisfactions', 'SatisfactionController');
+
     // Route::get('/ec', 'HomeController@ec');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function () {
