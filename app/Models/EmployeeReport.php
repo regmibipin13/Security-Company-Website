@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use \DateTimeInterface;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -17,8 +18,13 @@ class EmployeeReport extends Model implements HasMedia
     public static function boot()
     {
         parent::boot();
-
-        // if(auth()->check())
+        if (auth()->check()) {
+            if (auth()->user()->hasRole('Employee')) {
+                static::addGlobalScope('employee_id', function (Builder $builder) {
+                    $builder->where('employee_id', auth()->user()->employee_id);
+                });
+            }
+        }
     }
 
     protected $guarded = ['id'];
