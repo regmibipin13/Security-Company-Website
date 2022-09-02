@@ -84,6 +84,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('certificates/media', 'CertificatesController@storeMedia')->name('certificates.storeMedia');
     Route::post('certificates/ckmedia', 'CertificatesController@storeCKEditorImages')->name('certificates.storeCKEditorImages');
     Route::resource('certificates', 'CertificatesController');
+    
+     // Employee Form
+    Route::delete('employee-forms/destroy', 'EmployeeFormController@massDestroy')->name('employee-forms.massDestroy');
+    Route::post('employee-forms/media', 'EmployeeFormController@storeMedia')->name('employee-forms.storeMedia');
+    Route::post('employee-forms/ckmedia', 'EmployeeFormController@storeCKEditorImages')->name('employee-forms.storeCKEditorImages');
+    Route::resource('employee-forms', 'EmployeeFormController');
+
+    // Company Form
+    Route::delete('company-forms/destroy', 'CompanyFormController@massDestroy')->name('company-forms.massDestroy');
+    Route::resource('company-forms', 'CompanyFormController');
+
+    // Training Form
+    Route::delete('training-forms/destroy', 'TrainingFormController@massDestroy')->name('training-forms.massDestroy');
+    Route::post('training-forms/media', 'TrainingFormController@storeMedia')->name('training-forms.storeMedia');
+    Route::post('training-forms/ckmedia', 'TrainingFormController@storeCKEditorImages')->name('training-forms.storeCKEditorImages');
+    Route::resource('training-forms', 'TrainingFormController');
 
     // Route::get('/ec', 'HomeController@ec');
 });

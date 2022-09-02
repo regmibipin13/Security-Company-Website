@@ -127,6 +127,37 @@
                 </a>
             </li>
         @endcan
+                @can('employee_form_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.employee-forms.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/employee-forms") || request()->is("admin/employee-forms/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-female c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.employeeForm.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('company_form_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.company-forms.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/company-forms") || request()->is("admin/company-forms/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-building c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.companyForm.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('training_form_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.training-forms.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/training-forms") || request()->is("admin/training-forms/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-train c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.trainingForm.title') }}
+                </a>
+            </li>
+        @endcan
+        
         @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
             @can('profile_password_edit')
                 <li class="c-sidebar-nav-item">

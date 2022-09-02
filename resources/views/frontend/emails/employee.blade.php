@@ -197,7 +197,7 @@ a[x-apple-data-detectors] {
                   <td valign="top" align="center" style="padding:0;Margin:0;width:540px">
                    <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                      <tr style="border-collapse:collapse">
-                      <td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#666666;font-size:14px"><strong>Name - {{ $data['name'] }}<br>Address - {{ $data['address'] }}<br> Contact - {{ $data['phone'] }}<br />Email - {{ $data['email'] }}</strong><br></p></td>
+                      <td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#666666;font-size:14px"><strong>Name - {{ $data['name'] }}<br>Father Name - {{ $data['father_name'] }}<br />Grandfather Name - {{ $data['grandfather_name'] }}<br /> Address - {{ $data['address'] }}<br> Contact - {{ $data['phone'] }}<br />Email - {{ $data['email'] }}</strong><br></p></td>
                      </tr>
                      <tr style="border-collapse:collapse">
                       <td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#666666;font-size:14px"><strong></strong></p></td>
@@ -209,7 +209,7 @@ a[x-apple-data-detectors] {
                       <td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#666666;font-size:14px"><strong>
                           Citizenships -
                           @foreach($data['files'] as $file)
-                          <img src="{{ asset('storage/'.$file) }}" alt="{{ $file }}" width="500" height="500">
+                          <img src="{{ $file->getUrl() }}" alt="{{ $file->getUrl() }}" width="500" height="500">
                           @endforeach
                         </strong></p>
                     </td>

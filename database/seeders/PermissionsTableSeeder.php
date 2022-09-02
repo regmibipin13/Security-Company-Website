@@ -196,26 +196,106 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 47,
-                'title' => 'certificate_create',
+                'title' => 'qr_generate_create',
             ],
             [
                 'id'    => 48,
-                'title' => 'certificate_edit',
+                'title' => 'qr_generate_edit',
             ],
             [
                 'id'    => 49,
-                'title' => 'certificate_show',
+                'title' => 'qr_generate_show',
             ],
             [
                 'id'    => 50,
-                'title' => 'certificate_delete',
+                'title' => 'qr_generate_delete',
             ],
             [
                 'id'    => 51,
-                'title' => 'certificate_access',
+                'title' => 'qr_generate_access',
             ],
             [
                 'id'    => 52,
+                'title' => 'certificate_create',
+            ],
+            [
+                'id'    => 53,
+                'title' => 'certificate_edit',
+            ],
+            [
+                'id'    => 54,
+                'title' => 'certificate_show',
+            ],
+            [
+                'id'    => 55,
+                'title' => 'certificate_delete',
+            ],
+            [
+                'id'    => 56,
+                'title' => 'certificate_access',
+            ],
+            [
+                'id'    => 57,
+                'title' => 'employee_form_create',
+            ],
+            [
+                'id'    => 58,
+                'title' => 'employee_form_edit',
+            ],
+            [
+                'id'    => 59,
+                'title' => 'employee_form_show',
+            ],
+            [
+                'id'    => 60,
+                'title' => 'employee_form_delete',
+            ],
+            [
+                'id'    => 61,
+                'title' => 'employee_form_access',
+            ],
+            [
+                'id'    => 62,
+                'title' => 'company_form_create',
+            ],
+            [
+                'id'    => 63,
+                'title' => 'company_form_edit',
+            ],
+            [
+                'id'    => 64,
+                'title' => 'company_form_show',
+            ],
+            [
+                'id'    => 65,
+                'title' => 'company_form_delete',
+            ],
+            [
+                'id'    => 66,
+                'title' => 'company_form_access',
+            ],
+            [
+                'id'    => 67,
+                'title' => 'training_form_create',
+            ],
+            [
+                'id'    => 68,
+                'title' => 'training_form_edit',
+            ],
+            [
+                'id'    => 69,
+                'title' => 'training_form_show',
+            ],
+            [
+                'id'    => 70,
+                'title' => 'training_form_delete',
+            ],
+            [
+                'id'    => 71,
+                'title' => 'training_form_access',
+            ],
+            [
+                'id'    => 72,
                 'title' => 'profile_password_edit',
             ],
         ];

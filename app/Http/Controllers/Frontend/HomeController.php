@@ -12,6 +12,9 @@ use App\Models\Setting;
 use App\Models\Team;
 use App\Models\Testimonial;
 use App\Models\Website;
+use App\Models\CompanyForm;
+use App\Models\EmployeeForm;
+use App\Models\TrainingForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -75,9 +78,11 @@ class HomeController extends Controller
     {
         $email = Setting::first()->company_email;
         Mail::to($email)->queue(new CompanyMail($request->all()));
-
+        $request->merge(['company_contact'=>$request->company_phone,'contact'=>$request->phone]);
+        $company = CompanyForm::create($request->all());
         return response()->json(['success'=>'Operation Success']);
     }
+    
     public function apiEmployee(Request $request)
     {
         $sanitized = $request->validate([
@@ -87,19 +92,65 @@ class HomeController extends Controller
             'address' => 'required',
             'message' => 'nullable',
             'files' => 'required | array | min:3',
+            'father_name'=> 'required',
+            'grandfather_name' => 'required',
         ]);
+        $employee = EmployeeForm::create($sanitized);
+        foreach ($request->input('files', []) as $file) {
+            $file = \Str::substr($file, 11);
+            $employee->addMedia(storage_path('app/public/employees/' . basename($file)))->toMediaCollection('files');
+        }
         $data = [
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
             'message' => $request->message,
-            'files' => $request->input('files')
+            'father_name' => $request->father_name,
+            'grandfather_name' => $request->grandfather_name,
+            'files' => $employee->files,
         ];
         $email = Setting::first()->company_email;
         Mail::to($email)->queue(new EmployeeMail($data));
+        
+        
         // return "success";
         return redirect()->back()->with('success','Form Submitted Successfully');
+    }
+    
+    public function apiTraining(Request $request)
+    {
+        $request->merge(['contact'=>$request->phone]);
+        $sanitized = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'contact' => 'nullable',
+            'address' => 'required',
+            'message' => 'nullable',
+            'type' => 'required',
+            'files' => 'required | array | min:3',
+        ]);
+        
+        $email = Setting::first()->company_email;
+        $training = TrainingForm::create($sanitized);
+        foreach ($request->input('files', []) as $file) {
+            $file = \Str::substr($file, 11);
+            $training->addMedia(storage_path('app/public/employees/' . basename($file)))->toMediaCollection('files');
+        }
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'message' => $request->message,
+            'type' => $request->type,
+            'files' => $training->files,
+        ];
+        Mail::to($email)->queue(new \App\Mail\TrainingForm($data));
+        
+        return redirect()->back()->with('success','Form Submitted Successfully');
+        
     }
 
     public function storeMedia(Request $request)

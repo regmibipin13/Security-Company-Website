@@ -32,4 +32,5 @@ Route::group(['as'=>'frontend.'],function(){
 Route::group(['prefix'=>'api/v1/'], function(){
     Route::post('/contact/company',[HomeController::class, 'apiCompany']);
     Route::post('/contact/employee',[HomeController::class, 'apiEmployee']);
+    Route::post('/contact/training',[HomeController::class, 'apiTraining']);
 });
