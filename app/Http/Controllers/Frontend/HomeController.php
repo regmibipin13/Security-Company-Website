@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
         $website = Website::with(['media'])->first();
         $services = Service::with(['media'])->orderBy('id', 'desc')->limit(6)->get();
-        $teams = Team::with(['media'])->where('ended_at', null)->limit(6)->get();
+        $teams = Team::approved()->with(['media'])->where('ended_at', null)->limit(6)->get();
         $testimonials = Satisfaction::where('approved', true)->orderBy('id', 'desc')->limit(4)->get();
         return view('frontend.pages.home', compact('website', 'services', 'teams', 'testimonials'));
     }
@@ -62,7 +62,7 @@ class HomeController extends Controller
 
     public function teams()
     {
-        $teams = Team::with(['media'])->where('ended_at', null)->paginate(18);
+        $teams = Team::approved()->with(['media'])->where('ended_at', null)->paginate(18);
         $website = Website::first();
         return view('frontend.pages.teams', compact('teams', 'website'));
     }

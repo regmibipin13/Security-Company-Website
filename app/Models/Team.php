@@ -65,4 +65,9 @@ class Team extends Model implements HasMedia
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function scopeApproved($query)
+    {
+        return $query->where('is_enabled', true);
+    }
 }
