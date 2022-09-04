@@ -37,6 +37,7 @@ class Team extends Model implements HasMedia
         'still_working',
         'father_name',
         'grandfather_name',
+        'is_enabled',
         'created_at',
         'updated_at',
         'deleted_at',

@@ -37,12 +37,12 @@ class TeamsController extends Controller
                 $crudRoutePart = 'teams';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -57,10 +57,10 @@ class TeamsController extends Controller
             $table->editColumn('image', function ($row) {
                 if ($photo = $row->image) {
                     return sprintf(
-        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-        $photo->url,
-        $photo->thumbnail
-    );
+                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
+                        $photo->url,
+                        $photo->thumbnail
+                    );
                 }
 
                 return '';
@@ -83,6 +83,13 @@ class TeamsController extends Controller
 
     public function store(StoreTeamRequest $request)
     {
+        if ($request->has('is_enabled')) {
+            if ($request->is_enabled || $request->is_enabled == "on") {
+                $request->merge(['is_enabled' => 1]);
+            } else {
+                $request->merge(['is_enabled' => 0]);
+            }
+        }
         $team = Team::create($request->all());
 
         if ($request->input('image', false)) {
@@ -105,6 +112,16 @@ class TeamsController extends Controller
 
     public function update(UpdateTeamRequest $request, Team $team)
     {
+        // dd($request->all());
+        if ($request->has('is_enabled')) {
+            if ($request->is_enabled || $request->is_enabled == "on") {
+                $request->merge(['is_enabled' => 1]);
+            } else {
+                $request->merge(['is_enabled' => 0]);
+            }
+        } else {
+            $request->merge(['is_enabled' => 0]);
+        }
         $team->update($request->all());
 
         if ($request->input('image', false)) {
@@ -159,7 +176,7 @@ class TeamsController extends Controller
     public function certificate($id)
     {
         $team = Team::find($id);
-        if($team->ended_at == null) {
+        if ($team->ended_at == null) {
             return "This employee is still working here . Please add ended date to print certificate";
         }
         $settings = Setting::first();
@@ -168,6 +185,6 @@ class TeamsController extends Controller
             'settings' => $settings,
             'team' => $team,
         ];
-        return view('admin.ec',$data);
+        return view('admin.ec', $data);
     }
 }

@@ -57,6 +57,9 @@ class StoreTeamRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'is_enabled' => [
+                'nullable',
+            ]
         ];
     }
 }

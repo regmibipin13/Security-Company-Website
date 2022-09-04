@@ -50,7 +50,7 @@
                 <div class="form-group">
                     <label for="employee">{{ trans('cruds.satisfaction.fields.employee') }}</label>
                     <input class="form-control {{ $errors->has('employee_id') ? 'is-invalid' : '' }}" type="text"
-                        name="employee_id" id="employee" value="{{ old('employee_id', $satisfaction->employee) }}">
+                        name="employee_id" id="employee" value="{{ old('employee_id', $satisfaction->employee_id) }}">
                     @if ($errors->has('employee_id'))
                         <div class="invalid-feedback">
                             {{ $errors->first('employee_id') }}

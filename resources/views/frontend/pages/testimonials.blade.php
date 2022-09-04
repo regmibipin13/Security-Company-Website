@@ -31,6 +31,7 @@
                                                 Feedback</span>
                                         </span>
                                     @endif
+
                                 </span>
                             </a>
                         </div>

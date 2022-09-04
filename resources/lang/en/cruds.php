@@ -179,6 +179,7 @@ return [
             'position'          => 'Position',
             'position_helper'   => ' ',
             'image'             => 'Image',
+            'is_enabled'             => 'Enable',
             'image_helper'      => ' ',
             'created_at'        => 'Created at',
             'created_at_helper' => ' ',

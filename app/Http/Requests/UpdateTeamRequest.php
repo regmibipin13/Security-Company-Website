@@ -57,6 +57,9 @@ class UpdateTeamRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'is_enabled' => [
+                'nullable',
+            ]
         ];
     }
 }
