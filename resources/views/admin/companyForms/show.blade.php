@@ -83,7 +83,7 @@
                                 {{ trans('cruds.employeeForm.fields.files') }}
                             </th>
                             <td>
-                                @foreach ($employeeForm->files as $key => $media)
+                                @foreach ($companyForm->files as $key => $media)
                                     <a href="{{ $media->getUrl() }}" target="_blank">
                                         {{ trans('global.view_file') }}
                                     </a>
