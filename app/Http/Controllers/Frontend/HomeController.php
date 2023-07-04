@@ -82,6 +82,10 @@ class HomeController extends Controller
         Mail::to($email)->queue(new CompanyMail($request->all()));
         $request->merge(['company_contact' => $request->company_phone, 'contact' => $request->phone]);
         $company = CompanyForm::create($request->all());
+        foreach ($request->input('files', []) as $file) {
+            $file = \Str::substr($file, 11);
+            $company->addMedia(storage_path('app/public/companies/' . basename($file)))->toMediaCollection('files');
+        }
         return response()->json(['success' => 'Operation Success']);
     }
 

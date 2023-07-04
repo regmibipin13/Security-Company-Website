@@ -5,12 +5,19 @@ namespace App\Models;
 use \DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class CompanyForm extends Model
+class CompanyForm extends Model implements HasMedia
 {
     use HasFactory;
+    use InteractsWithMedia;
 
     public $table = 'company_forms';
+
+    protected $appends = [
+        'files',
+    ];
 
     protected $dates = [
         'created_at',
@@ -35,5 +42,9 @@ class CompanyForm extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+    public function getFilesAttribute()
+    {
+        return $this->getMedia('files');
     }
 }
