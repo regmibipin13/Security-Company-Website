@@ -23,46 +23,51 @@
                             <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Company Contact Us</h2>
                             <p class="leading-relaxed mb-5 text-gray-600">Contact our team for enquiries and more info</p>
                             <company inline-template>
-                                <form @submit.prevent="submit">
+                                <form action="{{ url('/api/v1/contact/company') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
                                     <div class="relative mb-4">
                                         <label for="company_name" class="leading-7 text-sm text-gray-600">Company
                                             Name</label>
                                         <input type="text" id="company_name" v-model="form.company_name"
+                                            name="company_name"
                                             class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="relative mb-4">
                                         <label for="location" class="leading-7 text-sm text-gray-600">Company
                                             Location</label>
                                         <input type="text" id="location" v-model="form.company_location"
+                                            name="company_location"
                                             class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="relative mb-4">
                                         <label for="company_phone" class="leading-7 text-sm text-gray-600">Company
                                             Contact</label>
                                         <input type="text" id="company_phone" v-model="form.company_phone"
+                                            name="company_phone"
                                             class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="relative mb-4">
                                         <label for="name" class="leading-7 text-sm text-gray-600">Your Name (Form
                                             Filler)</label>
-                                        <input type="text" id="name" v-model="form.name"
+                                        <input type="text" id="name" v-model="form.name" name="name"
                                             class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="relative mb-4">
                                         <label for="email" class="leading-7 text-sm text-gray-600">Your Email (Form
                                             Filler)</label>
-                                        <input type="email" id="email" v-model="form.email"
+                                        <input type="email" id="email" v-model="form.email" name="email"
                                             class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="relative mb-4">
                                         <label for="phone" class="leading-7 text-sm text-gray-600">Your Contact (Form
                                             Filler)</label>
-                                        <input type="text" id="phone" v-model="form.phone"
+                                        <input type="text" id="phone" v-model="form.phone" name="phone"
                                             class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="relative mb-4">
                                         <label for="subject" class="leading-7 text-sm text-gray-600">Your Subject</label>
-                                        <input type="text" id="subject" v-model="form.subject"
+                                        <input type="text" id="subject" v-model="form.subject" name="subject"
                                             class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="relative mb-4">
@@ -83,7 +88,7 @@
                                     </div>
                                     <div class="relative mb-4">
                                         <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
-                                        <textarea id="message" v-model="form.message"
+                                        <textarea id="message" v-model="form.message" name="message"
                                             class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                                             placeholder="Write your message in breif"></textarea>
                                     </div>

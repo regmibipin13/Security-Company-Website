@@ -86,7 +86,11 @@ class HomeController extends Controller
             $file = \Str::substr($file, 11);
             $company->addMedia(storage_path('app/public/companies/' . basename($file)))->toMediaCollection('files');
         }
-        return response()->json(['success' => 'Operation Success']);
+        if ($request->ajax()) {
+            return response()->json(['success' => 'Operation Success']);
+        }
+
+        return redirect()->back()->with('success', 'Form Submitted Successfully');
     }
 
     public function apiEmployee(Request $request)
